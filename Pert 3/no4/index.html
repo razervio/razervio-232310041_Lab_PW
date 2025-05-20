@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Perhitungan Saldo Tabungan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Perhitungan Saldo Tabungan</h2>
+        <form id="tabunganForm">
+            <label for="saldoAwal">Saldo Awal (Rp):</label>
+            <input type="number" id="saldoAwal" value="100000" required>
+
+            <label for="bunga">Bunga per Bulan (%):</label>
+            <input type="number" id="bunga" value="10" required>
+
+            <label for="waktu">Waktu (bulan):</label>
+            <input type="number" id="waktu" value="3" required>
+
+            <button type="button" onclick="hitungSaldo()">Hitung</button>
+        </form>
+
+        <div class="output" id="hasilOutput">
+            <!-- Hasil akan ditampilkan di sini -->
+        </div>
+    </div>
+
+    <script>
+        function hitungSaldo() {
+            let saldo = parseFloat(document.getElementById("saldoAwal").value);
+            const bunga = parseFloat(document.getElementById("bunga").value);
+            const waktu = parseInt(document.getElementById("waktu").value);
+
+            let hasil = "";
+            for (let i = 1; i <= waktu; i++) {
+                saldo += saldo * (bunga / 100);
+                hasil += `Saldo Bulan ${i} = Rp. ${saldo.toFixed(0)}<br>`;
+            }
+
+            document.getElementById("hasilOutput").innerHTML = hasil;
+        }
+    </script>
+</body>
+</html>
