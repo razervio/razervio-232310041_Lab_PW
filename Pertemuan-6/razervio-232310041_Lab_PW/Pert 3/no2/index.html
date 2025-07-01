@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Pemesanan Tiket</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Form Pemesanan Tiket</h2>
+        <form id="ticketForm">
+            <label>Nama Pemesan:</label>
+            <input type="text" id="nama" required>
+
+            <label>Tujuan:</label>
+            <select id="tujuan">
+                <option value="Jakarta">Jakarta</option>
+                <option value="Solo">Solo</option>
+                <option value="Surabaya">Surabaya</option>
+            </select>
+
+            <label>Kelas:</label>
+            <select id="kelas">
+                <option value="Eksekutif">Eksekutif</option>
+                <option value="Bisnis">Bisnis</option>
+                <option value="Ekonomi">Ekonomi</option>
+            </select>
+
+            <label>Banyak Tiket:</label>
+            <input type="number" id="jumlah" min="1" required>
+
+            <label>Status Keanggotaan:</label>
+            <select id="status">
+                <option value="Member">Member</option>
+                <option value="Non-Member">Non-Member</option>
+            </select>
+
+            <button type="button" onclick="hitungTotal()">Hitung</button>
+        </form>
+
+        <div class="output" id="output"></div>
+    </div>
+
+    <script>
+        const hargaTiket = {
+            "Jakarta": { "Eksekutif": 70000, "Bisnis": 40000, "Ekonomi": 10000 },
+            "Solo": { "Eksekutif": 80000, "Bisnis": 50000, "Ekonomi": 20000 },
+            "Surabaya": { "Eksekutif": 90000, "Bisnis": 60000, "Ekonomi": 30000 }
+        };
+
+        function hitungTotal() {
+            const tujuan = document.getElementById('tujuan').value;
+            const kelas = document.getElementById('kelas').value;
+            const jumlah = parseInt(document.getElementById('jumlah').value);
+            const status = document.getElementById('status').value;
+
+            const harga = hargaTiket[tujuan][kelas];
+            const subtotal = harga * jumlah;
+            const diskon = (status === 'Member') ? 0.1 * subtotal : 0;
+            const total = subtotal - diskon;
+
+            document.getElementById('output').innerHTML = `
+                <p>Harga Tiket: Rp ${harga.toLocaleString()}</p>
+                <p>Subtotal: Rp ${subtotal.toLocaleString()}</p>
+                <p>Diskon: Rp ${diskon.toLocaleString()}</p>
+                <p><strong>Total Bayar: Rp ${total.toLocaleString()}</strong></p>
+            `;
+        }
+    </script>
+</body>
+</html>

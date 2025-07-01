@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mencari Akar-Akar Persamaan Kuadrat</title>
+    <script>
+        function hitungAkar() {
+            var a = parseFloat(document.getElementById("a").value);
+            var b = parseFloat(document.getElementById("b").value);
+            var c = parseFloat(document.getElementById("c").value);
+
+            var diskriminan = b * b - 4 * a * c;
+            var hasil = "";
+
+            if (diskriminan > 0) {
+                var x1 = (-b + Math.sqrt(diskriminan)) / (2 * a);
+                var x2 = (-b - Math.sqrt(diskriminan)) / (2 * a);
+                hasil = "Akar-akarnya adalah x1 = " + x1 + " dan x2 = " + x2;
+            } else if (diskriminan === 0) {
+                var x = -b / (2 * a);
+                hasil = "Akar kembar: x = " + x;
+            } else {
+                hasil = "Tidak memiliki akar real (akar imajiner)";
+            }
+
+            document.getElementById("output").innerText = hasil;
+        }
+    </script>
+</head>
+<body>
+    <h2>Menghitung Akar-Akar Persamaan Kuadrat</h2>
+    <p>Persamaan: ax² + bx + c = 0</p>
+    <form onsubmit="event.preventDefault(); hitungAkar();">
+        Nilai a: <input type="number" id="a" required><br><br>
+        Nilai b: <input type="number" id="b" required><br><br>
+        Nilai c: <input type="number" id="c" required><br><br>
+        <button type="submit">Hitung Akar</button>
+    </form>
+    <p id="output"></p>
+</body>
+</html>

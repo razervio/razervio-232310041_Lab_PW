@@ -1,0 +1,28 @@
+/* external css */
+aside h5 {
+    color: darkgreen;
+}
+footer {
+    background-color: grey;
+}
+div p {
+    background-color: lightcoral;
+}
+#card {
+    border: 2px dotted blue;
+    margin: 50px;
+    padding: 25px 50px 75px 100px;
+}
+.para2:hover{
+    font-size: 1.5em;
+    color: red;
+}
+p::first-line {
+    color: tomato;
+}
+body {
+    margin-top: 100px;
+    margin-right: 100px;
+    margin-bottom: 150px;
+    margin-left: 80px;
+}
